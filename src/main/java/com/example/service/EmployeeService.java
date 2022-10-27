@@ -47,7 +47,7 @@ public class EmployeeService {
 		
 		existing.setEmployeeBenefits(employee.getEmployeeBenefits());
 		existing.setEmployeeBonuses(employee.getEmployeeBenefits());
-		existing.setDepartmentID(employee.getDepartmentID());
+		existing.setDepartment(employee.getDepartment());
 		existing.setEmployeeName(employee.getEmployeeName());
 		existing.setEmployeeSalary(employee.getEmployeeSalary());
 		return this.mapToDTO(this.repo.save(existing));

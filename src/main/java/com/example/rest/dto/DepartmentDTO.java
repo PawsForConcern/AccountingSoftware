@@ -1,15 +1,22 @@
 package com.example.rest.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.persistence.domain.Employee;
+
 public class DepartmentDTO {
-	private Long departmentId;
+	private Long id;
 	private String departmentName;
 	private float departmentExpenses;
-	
-	public DepartmentDTO(Long departmentId, String departmentName, float departmentExpenses) {
+	private List<Employee> employees= new ArrayList<>();
+
+	public DepartmentDTO(Long departmentId, String departmentName, float departmentExpenses, List<Employee> employees) {
 		super();
-		this.departmentId = departmentId;
+		this.id = departmentId;
 		this.departmentName = departmentName;
 		this.departmentExpenses = departmentExpenses;
+		this.employees = employees;
 	}
 
 	public DepartmentDTO() {
@@ -18,11 +25,11 @@ public class DepartmentDTO {
 	}
 
 	public Long getDepartmentId() {
-		return departmentId;
+		return id;
 	}
 
 	public void setDepartmentId(Long departmentId) {
-		this.departmentId = departmentId;
+		this.id = departmentId;
 	}
 
 	public String getDepartmentName() {
@@ -40,6 +47,18 @@ public class DepartmentDTO {
 	public void setDepartmentExpenses(float departmentExpenses) {
 		this.departmentExpenses = departmentExpenses;
 	}
-	
-	
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
+	@Override
+	public String toString() {
+		return "DepartmentDTO [departmentId=" + id + ", departmentName=" + departmentName
+				+ ", departmentExpenses=" + departmentExpenses + "]";
+	}
 }

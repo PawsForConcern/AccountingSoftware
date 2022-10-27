@@ -1,22 +1,24 @@
 package com.example.rest.dto;
 
+import com.example.persistence.domain.Department;
+
 public class EmployeeDTO {
-	private Long employeeID;
+	private Long id;
 	private String employeeName;
 	private float employeeSalary;
 	private float employeeBenefits;
 	private float employeeBonuses;
-	private Long departmentID;
-	
+	private Department department;
+
 	public EmployeeDTO(Long employeeID, String employeeName, float employeeSalary, float employeeBenefits,
-			float employeeBonuses, Long departmentID) {
+			float employeeBonuses, Department department) {
 		super();
-		this.employeeID = employeeID;
+		this.id = employeeID;
 		this.employeeName = employeeName;
 		this.employeeSalary = employeeSalary;
 		this.employeeBenefits = employeeBenefits;
 		this.employeeBonuses = employeeBonuses;
-		this.departmentID = departmentID;
+		this.department = department;
 	}
 
 	public EmployeeDTO() {
@@ -25,11 +27,11 @@ public class EmployeeDTO {
 	}
 
 	public Long getEmployeeID() {
-		return employeeID;
+		return id;
 	}
 
 	public void setEmployeeID(Long employeeID) {
-		this.employeeID = employeeID;
+		this.id = employeeID;
 	}
 
 	public String getEmployeeName() {
@@ -64,20 +66,19 @@ public class EmployeeDTO {
 		this.employeeBonuses = employeeBonuses;
 	}
 
-	public Long getDepartmentID() {
-		return departmentID;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartmentID(Long departmentID) {
-		this.departmentID = departmentID;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override
 	public String toString() {
-		return "EmployeeDTO [employeeID=" + employeeID + ", employeeName=" + employeeName + ", employeeSalary="
+		return "EmployeeDTO [employeeID=" + id + ", employeeName=" + employeeName + ", employeeSalary="
 				+ employeeSalary + ", employeeBenefits=" + employeeBenefits + ", employeeBonuses=" + employeeBonuses
-				+ ", departmentID=" + departmentID + "]";
+				+ ", department=" + department + "]";
 	}
-	
 	
 }

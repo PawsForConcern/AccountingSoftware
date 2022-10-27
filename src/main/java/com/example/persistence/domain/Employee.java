@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long employeeID;
+	private Long id;
 	@NotNull
 	private String employeeName;
 	@NotNull
@@ -23,19 +24,18 @@ public class Employee {
 	@NotNull
 	@Min(0)
 	private float employeeBonuses;
-	@NotNull
-	private Long departmentID;
-	
+	@ManyToOne
+	private Department department;
+
 	public Employee(Long employeeID, @NotNull String employeeName, @NotNull @Min(0) float employeeSalary,
-			@NotNull @Min(0) float employeeBenefits, @NotNull @Min(0) float employeeBonuses,
-			@NotNull Long departmentID) {
+			@NotNull @Min(0) float employeeBenefits, @NotNull @Min(0) float employeeBonuses, Department department) {
 		super();
-		this.employeeID = employeeID;
+		this.id = employeeID;
 		this.employeeName = employeeName;
 		this.employeeSalary = employeeSalary;
 		this.employeeBenefits = employeeBenefits;
 		this.employeeBonuses = employeeBonuses;
-		this.departmentID = departmentID;
+		this.department = department;
 	}
 
 	public Employee() {
@@ -44,11 +44,11 @@ public class Employee {
 	}
 
 	public Long getEmployeeID() {
-		return employeeID;
+		return id;
 	}
 
 	public void setEmployeeID(Long employeeID) {
-		this.employeeID = employeeID;
+		this.id = employeeID;
 	}
 
 	public String getEmployeeName() {
@@ -83,20 +83,19 @@ public class Employee {
 		this.employeeBonuses = employeeBonuses;
 	}
 
-	public Long getDepartmentID() {
-		return departmentID;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartmentID(Long departmentID) {
-		this.departmentID = departmentID;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [employeeID=" + employeeID + ", employeeName=" + employeeName + ", employeeSalary="
+		return "Employee [employeeID=" + id + ", employeeName=" + employeeName + ", employeeSalary="
 				+ employeeSalary + ", employeeBenefits=" + employeeBenefits + ", employeeBonuses=" + employeeBonuses
-				+ ", departmentID=" + departmentID + "]";
+				+ ", department=" + department + "]";
 	}
-	
-	
+
 }
