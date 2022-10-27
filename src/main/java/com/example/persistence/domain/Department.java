@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -14,6 +15,7 @@ public class Department {
 	@NotNull
 	private String departmentName;
 	@NotNull
+	@Min(0)
 	private float departmentExpenses;
 	
 	public Department(Long departmentId, @NotNull String departmentName, @NotNull float departmentExpenses) {

@@ -18,12 +18,13 @@ public class DepartmentService {
 	
 	@Autowired
 	private ModelMapper mapper;
-
-	public DepartmentService(DepartmentRepo repo) {
+	
+	public DepartmentService(DepartmentRepo repo, ModelMapper mapper) {
 		super();
 		this.repo = repo;
+		this.mapper = mapper;
 	}
-	
+
 	private DepartmentDTO mapToDTO(Department department) {
 		return this.mapper.map(department, DepartmentDTO.class);
 	}
