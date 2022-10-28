@@ -3,6 +3,8 @@ package com.example.rest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,27 +25,27 @@ public class EmployeeController {
 	private EmployeeService service;
 	
 	@PostMapping("/create")
-	public EmployeeDTO createEmployee(@RequestBody Employee employee) {
-		return this.service.createEmployee(employee);
+	public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody Employee employee) {
+		return new ResponseEntity<>(this.service.createEmployee(employee),HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getAll")
-	public List<EmployeeDTO> getAllEmployees() {
-		return this.service.getAllEmployees();
+	public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
+		return new ResponseEntity<>(this.service.getAllEmployees(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/getById/{id}")
-	public EmployeeDTO getEmployeeById(@PathVariable Long id) {
-		return this.service.getEmployeeById(id);
+	public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
+		return new ResponseEntity<>(this.service.getEmployeeById(id),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{id}")
-	public EmployeeDTO updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-		return this.service.updateEmployee(id, employee);
+	public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+		return new ResponseEntity<>(this.service.updateEmployee(id, employee),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public boolean deleteDepartment(@PathVariable Long id) {
-		return this.service.deleteEmployee(id);
+	public ResponseEntity<Boolean> deleteDepartment(@PathVariable Long id) {
+		return new ResponseEntity<>(this.service.deleteEmployee(id),HttpStatus.OK);
 	}
 }

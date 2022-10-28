@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.exception.DepartmentNotFoundException;
 import com.example.persistence.domain.Department;
 import com.example.persistence.repository.DepartmentRepo;
 import com.example.rest.dto.DepartmentDTO;
@@ -38,18 +39,18 @@ public class DepartmentService {
 	}
 	
 	public DepartmentDTO getDepartmentById(Long id) {
-		return this.mapToDTO(this.repo.findById(id).get());
+		return this.mapToDTO(this.repo.findById(id).orElseThrow(DepartmentNotFoundException::new));
 	}
 	
 	public DepartmentDTO updateDepartment(Long id, Department department) {
-		Department existing = this.repo.findById(id).get();
+		Department existing = this.repo.findById(id).orElseThrow(DepartmentNotFoundException::new);
 		
 		existing.setDepartmentName(department.getDepartmentName());
 		existing.setDepartmentExpenses(department.getDepartmentExpenses());
 		return this.mapToDTO(this.repo.save(existing));
 	}
 	
-	public boolean deleteDepartment(Long id) {
+	public Boolean deleteDepartment(Long id) {
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}

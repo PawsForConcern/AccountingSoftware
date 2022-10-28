@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.exception.EmployeeNotFoundException;
 import com.example.persistence.domain.Employee;
 import com.example.persistence.repository.EmployeeRepo;
 import com.example.rest.dto.EmployeeDTO;
@@ -39,11 +40,11 @@ public class EmployeeService {
 	}
 	
 	public EmployeeDTO getEmployeeById(Long id) {
-		return this.mapToDTO(this.repo.findById(id).get());
+		return this.mapToDTO(this.repo.findById(id).orElseThrow(EmployeeNotFoundException::new));
 	}
 	
 	public EmployeeDTO updateEmployee(Long id, Employee employee) {
-		Employee existing = this.repo.findById(id).get();
+		Employee existing = this.repo.findById(id).orElseThrow(EmployeeNotFoundException::new);
 		
 		existing.setEmployeeBenefits(employee.getEmployeeBenefits());
 		existing.setEmployeeBonuses(employee.getEmployeeBenefits());
